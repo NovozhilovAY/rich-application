@@ -1,5 +1,7 @@
 package com.example.richapplication.model;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
@@ -23,6 +25,7 @@ public class User {
     private String lastName;
 
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     @Column(name = "profile_descr", nullable = false)
     private String profileDescription;
 

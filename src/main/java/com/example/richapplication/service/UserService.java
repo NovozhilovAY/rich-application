@@ -21,11 +21,11 @@ public class UserService {
     }
 
     public List<User> getUsersByCity(String city){
-        return repository.getUsersByCity(city);
+        return repository.getUsersByCityOrderByMoneyDesc(city);
     }
 
     public List<User> getUsersByCountry(String country){
-        return repository.getUsersByCountry(country);
+        return repository.getUsersByCountryOrderByMoneyDesc(country);
     }
 
     public User getUserByID(Integer id){
