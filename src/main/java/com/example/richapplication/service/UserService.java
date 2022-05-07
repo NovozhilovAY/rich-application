@@ -49,9 +49,9 @@ public class UserService {
     }
 
     public User makePayment(Payment payment){
-        User userToUpdate = this.getUserByID(payment.getId());
-        userToUpdate.setMoney(userToUpdate.getMoney() + payment.getAmount());
-        return repository.save(userToUpdate);
+        repository.makePayment(payment.getId(), payment.getAmount());
+        User updatedUser = this.getUserByID(payment.getId());
+        return getUserByID(payment.getId());
     }
 
 }

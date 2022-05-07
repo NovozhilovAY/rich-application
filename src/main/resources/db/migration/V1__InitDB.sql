@@ -16,6 +16,33 @@ create table users
 alter table users
     owner to postgres;
 
+create table payments_log
+(
+    id      serial
+        primary key,
+    user_id integer                             not null
+        constraint user_f_key
+            references users
+            on update cascade on delete cascade,
+    amount  numeric                             not null,
+    date_p  timestamp default CURRENT_TIMESTAMP not null
+);
+
+alter table payments_log
+    owner to postgres;
+
+create procedure make_payment(IN user_id integer, IN amount double precision)
+    language plpgsql
+as
+$$
+BEGIN
+UPDATE users SET money = money + amount WHERE id = user_id;
+INSERT INTO payments_log (user_id, amount) VALUES (user_id, amount);
+END;
+$$;
+
+alter procedure make_payment(integer, double precision) owner to postgres;
+
 INSERT INTO users (login, first_name, last_name, profile_descr, profile_picture, country, city, money)
 values ('login1', 'Дмитрий', 'Бражник', 'Всем привет! Я главный андроид разработчик', 'picture.png', 'Россия', 'Нижний Новгород', 0);
 
