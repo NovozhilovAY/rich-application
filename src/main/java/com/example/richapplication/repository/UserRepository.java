@@ -1,6 +1,7 @@
 package com.example.richapplication.repository;
 
 import com.example.richapplication.dto.Payment;
+import com.example.richapplication.model.ShortUser;
 import com.example.richapplication.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
