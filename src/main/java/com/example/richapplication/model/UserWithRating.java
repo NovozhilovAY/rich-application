@@ -14,14 +14,14 @@ public class UserWithRating extends User{
         setCountry(user.getCountry());
         setCity(user.getCity());
         setMoney(user.getMoney());
+        setStatus(user.getStatus());
     }
 
-    public UserWithRating(Integer id, String login, String firstName, String lastName, String profileDescription, String profilePicture, String country, String city, Double money) {
-        super(id, login, firstName, lastName, profileDescription, profilePicture, country, city, money);
+    public UserWithRating() {
     }
 
-    public UserWithRating(Integer id, String login, String firstName, String lastName, String profileDescription, String profilePicture, String country, String city, Double money, Integer globalRating, Integer countryRating, Integer cityRating) {
-        super(id, login, firstName, lastName, profileDescription, profilePicture, country, city, money);
+    public UserWithRating(Integer id, String login, String firstName, String lastName, String profileDescription, String profilePicture, String country, String city, Double money, Integer globalRating, Integer countryRating, Integer cityRating, String status) {
+        super(id, login, firstName, lastName, profileDescription,status, profilePicture, country, city, money);
         this.globalRating = globalRating;
         this.countryRating = countryRating;
         this.cityRating = cityRating;

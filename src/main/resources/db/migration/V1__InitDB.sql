@@ -7,6 +7,7 @@ create table users
     first_name      varchar not null,
     last_name       varchar not null,
     profile_descr   varchar not null,
+    status   varchar,
     profile_picture varchar default 'default_picture.png'::character varying,
     country         varchar,
     city            varchar,
@@ -43,8 +44,8 @@ $$;
 
 alter procedure make_payment(integer, double precision) owner to postgres;
 
-INSERT INTO users (login, first_name, last_name, profile_descr, profile_picture, country, city, money)
-values ('login1', 'Дмитрий', 'Бражник', 'Всем привет! Я главный андроид разработчик', 'picture.png', 'Россия', 'Нижний Новгород', 0);
+INSERT INTO users (login, first_name, last_name, status, profile_descr, profile_picture, country, city, money)
+values ('login1', 'Дмитрий', 'Бражник','Если волк молчит, его лучше не перебивать', 'Всем привет! Я главный андроид разработчик', 'picture.png', 'Россия', 'Нижний Новгород', 0);
 
 INSERT INTO users (login, first_name, last_name, profile_descr, profile_picture, country, city, money)
 values ('login2', 'Новожилов', 'Александр', 'Сас', 'picture2.png', 'Россия', 'Нижний Новгород', 0);

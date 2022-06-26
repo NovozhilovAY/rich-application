@@ -16,15 +16,18 @@ public class ShortUser {
 
     private String profilePicture;
 
+    private String status;
+
     public ShortUser() {
     }
 
-    public ShortUser(Integer id, Double money, String firstName, String lastName, String profilePicture) {
+    public ShortUser(Integer id, Double money, String firstName, String lastName, String profilePicture, String status) {
         this.id = id;
         this.money = money;
         this.firstName = firstName;
         this.lastName = lastName;
         this.profilePicture = profilePicture;
+        this.status = status;
     }
 
     public Integer getId() {
@@ -67,8 +70,16 @@ public class ShortUser {
         this.profilePicture = profilePicture;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public static ShortUser fromUser(User user){
-        return new ShortUser(user.getId(), user.getMoney(), user.getFirstName(), user.getLastName(), user.getProfilePicture());
+        return new ShortUser(user.getId(), user.getMoney(), user.getFirstName(), user.getLastName(), user.getProfilePicture(), user.getStatus());
     }
 
     public static List<ShortUser> fromUsers(List<User> users){
