@@ -2,6 +2,7 @@ package com.example.richapplication.controller;
 
 import com.example.richapplication.dto.Payment;
 import com.example.richapplication.model.User;
+import com.example.richapplication.model.UserWithRating;
 import com.example.richapplication.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +34,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    User getUserById(@PathVariable(name = "id") Integer id){
+    UserWithRating getUserById(@PathVariable(name = "id") Integer id){
         return userService.getUserByID(id);
     }
 

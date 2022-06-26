@@ -3,6 +3,7 @@ package com.example.richapplication.service;
 import com.example.richapplication.dto.Payment;
 import com.example.richapplication.exceptions.ResourceNotFoundException;
 import com.example.richapplication.model.User;
+import com.example.richapplication.model.UserWithRating;
 import com.example.richapplication.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -28,9 +29,11 @@ public class UserService {
         return repository.getUsersByCountryOrderByMoneyDesc(country);
     }
 
-    public User getUserByID(Integer id){
-        return repository.findById(id).orElseThrow(
+    public UserWithRating getUserByID(Integer id){
+        User user = repository.findById(id).orElseThrow(
                 ()->new ResourceNotFoundException("User with id = "+ id +" not found"));
+        UserWithRating userWithRating = getUserWithRating(user);
+        return getUserWithRating(user);
     }
 
     public void deleteUserByID(Integer id){
@@ -44,7 +47,6 @@ public class UserService {
 
     public User updateUser(User user){
         User userToUpdate = this.getUserByID(user.getId());
-        repository.delete(userToUpdate);
         return repository.save(user);
     }
 
@@ -52,6 +54,29 @@ public class UserService {
         repository.makePayment(payment.getId(), payment.getAmount());
         User updatedUser = this.getUserByID(payment.getId());
         return getUserByID(payment.getId());
+    }
+
+    private UserWithRating getUserWithRating(User user){
+        UserWithRating userWithRating = new UserWithRating(user);
+        userWithRating.setGlobalRating(getGlobalRating(user));
+        userWithRating.setCountryRating(getCountryRating(user));
+        userWithRating.setCityRating(getCityRating(user));
+        return userWithRating;
+    }
+
+    private Integer getGlobalRating(User user){
+        List<User> userList = repository.findAll();
+        return userList.indexOf(user) + 1;
+    }
+
+    private Integer getCountryRating(User user){
+        List<User> userList = repository.getUsersByCountryOrderByMoneyDesc(user.getCountry());
+        return userList.indexOf(user) + 1;
+    }
+
+    private Integer getCityRating(User user){
+        List<User> userList = repository.getUsersByCityOrderByMoneyDesc(user.getCity());
+        return userList.indexOf(user) + 1;
     }
 
 }

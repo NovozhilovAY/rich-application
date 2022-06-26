@@ -35,3 +35,5 @@ build/
 /mvnw.cmd
 /.mvn/
 /src/test/
+/src/main/resources/static/
+/src/main/resources/test.html

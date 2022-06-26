@@ -1,11 +1,13 @@
 package com.example.richapplication.model;
 
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
+@DynamicUpdate
 @Table(name = "users")
 public class User {
     @Id
@@ -37,12 +39,26 @@ public class User {
     @Column(name = "country")
     private String country;
 
-
     @Column(name = "city")
     private String city;
 
     @Column(name = "money")
     private Double money;
+
+    public User(Integer id, String login, String firstName, String lastName, String profileDescription, String profilePicture, String country, String city, Double money) {
+        this.id = id;
+        this.login = login;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.profileDescription = profileDescription;
+        this.profilePicture = profilePicture;
+        this.country = country;
+        this.city = city;
+        this.money = money;
+    }
+
+    public User() {
+    }
 
     public Integer getId() {
         return id;
