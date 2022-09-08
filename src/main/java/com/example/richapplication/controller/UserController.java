@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
+@CrossOrigin("*")
 public class UserController {
     private final UserService userService;
 
@@ -35,7 +36,7 @@ public class UserController {
 
     @GetMapping("/{id}")
     UserWithRating getUserById(@PathVariable(name = "id") Integer id){
-        return userService.getUserByID(id);
+        return userService.getUserWithRatingByID(id);
     }
 
     @DeleteMapping("/{id}")

@@ -29,10 +29,14 @@ public class UserService {
         return repository.getUsersByCountryOrderByMoneyDesc(country);
     }
 
-    public UserWithRating getUserByID(Integer id){
+    public User getUserByID(Integer id){
+        return repository.findById(id).orElseThrow(
+                ()->new ResourceNotFoundException("User with id = "+ id +" not found"));
+    }
+
+    public UserWithRating getUserWithRatingByID(Integer id){
         User user = repository.findById(id).orElseThrow(
                 ()->new ResourceNotFoundException("User with id = "+ id +" not found"));
-        UserWithRating userWithRating = getUserWithRating(user);
         return getUserWithRating(user);
     }
 
