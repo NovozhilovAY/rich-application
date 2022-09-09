@@ -1,5 +1,6 @@
 package com.example.richapplication.service;
 
+import com.example.richapplication.dto.UpdateImageAnswer;
 import com.example.richapplication.exceptions.ResourceNotFoundException;
 import com.example.richapplication.model.User;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,7 +30,7 @@ public class ImageService {
         this.userService = userService;
     }
 
-    public ResponseEntity<String> updateProfilePicture(Integer id, MultipartFile file){
+    public ResponseEntity<UpdateImageAnswer> updateProfilePicture(Integer id, MultipartFile file){
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         User user = userService.getUserByID(id);
         if(user.getProfilePicture() != null){
@@ -43,7 +44,8 @@ public class ImageService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return ResponseEntity.ok(user.getProfilePicture());
+        UpdateImageAnswer answer = new UpdateImageAnswer(user.getProfilePicture());
+        return ResponseEntity.ok(answer);
     }
 
     public ResponseEntity<Resource> downloadImage(String fileName){

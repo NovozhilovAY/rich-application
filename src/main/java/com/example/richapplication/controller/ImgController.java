@@ -1,5 +1,6 @@
 package com.example.richapplication.controller;
 
+import com.example.richapplication.dto.UpdateImageAnswer;
 import com.example.richapplication.model.User;
 import com.example.richapplication.service.ImageService;
 import com.example.richapplication.service.UserService;
@@ -34,7 +35,7 @@ public class ImgController {
     }
 
     @PostMapping("/{id}")
-    public ResponseEntity<String> upload(@PathVariable Integer id, @RequestParam("file") MultipartFile file) {
+    public ResponseEntity<UpdateImageAnswer> upload(@PathVariable Integer id, @RequestParam("file") MultipartFile file) {
         return imageService.updateProfilePicture(id, file);
     }
 
