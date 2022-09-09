@@ -46,17 +46,17 @@ public class UserController {
     }
 
     @PostMapping
-    User saveUser(User user){
+    User saveUser(@RequestBody User user){
         return userService.addUser(user);
     }
 
     @PutMapping
-    User updateUser(User user){
+    User updateUser(@RequestBody User user){
         return userService.updateUser(user);
     }
 
     @PostMapping("/payment")
-    User makePayment(Payment payment){
+    User makePayment(@RequestBody Payment payment){
         return userService.makePayment(payment);
     }
 
