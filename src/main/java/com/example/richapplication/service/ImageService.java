@@ -24,6 +24,9 @@ public class ImageService {
     private final UserService userService;
     @Value("${root.image.url}")
     private String rootUrl;
+
+    @Value("${default.picture.name}")
+    private String defaultProfilePictureName;
     private final String FILE_BASE_PATH = "src/main/resources/static/";
 
     public ImageService(UserService userService) {
@@ -33,7 +36,7 @@ public class ImageService {
     public ResponseEntity<UpdateImageAnswer> updateProfilePicture(Integer id, MultipartFile file){
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         User user = userService.getUserByID(id);
-        if(user.getProfilePicture() != null){
+        if(user.getProfilePicture() != null && !defaultProfilePictureName.equals(getFileName(user.getProfilePicture()))){
             deleteImage(getFileName(user.getProfilePicture()));
         }
         Path path = Paths.get(FILE_BASE_PATH + getUniqueFileName(fileName, id));

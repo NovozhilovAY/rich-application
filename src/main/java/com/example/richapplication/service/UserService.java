@@ -5,6 +5,7 @@ import com.example.richapplication.exceptions.ResourceNotFoundException;
 import com.example.richapplication.model.User;
 import com.example.richapplication.model.UserWithRating;
 import com.example.richapplication.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +13,12 @@ import java.util.List;
 @Service
 public class UserService {
     private final UserRepository repository;
+
+    @Value("${root.image.url}")
+    private String rootImageUrl;
+
+    @Value("${default.picture.name}")
+    private String defaultProfilePictureName;
 
     public UserService(UserRepository repository) {
         this.repository = repository;
@@ -46,6 +53,7 @@ public class UserService {
     }
 
     public User addUser(User user){
+        setDefaultProfilePicture(user);
         return repository.save(user);
     }
 
@@ -81,6 +89,10 @@ public class UserService {
     private Integer getCityRating(User user){
         List<User> userList = repository.getUsersByCityOrderByMoneyDesc(user.getCity());
         return userList.indexOf(user) + 1;
+    }
+
+    private void setDefaultProfilePicture(User user){
+        user.setProfilePicture(rootImageUrl + defaultProfilePictureName);
     }
 
 }

@@ -45,19 +45,19 @@ $$;
 alter procedure make_payment(integer, double precision) owner to postgres;
 
 INSERT INTO users (login, first_name, last_name, status, profile_descr, profile_picture, country, city, money)
-values ('login1', 'Дмитрий', 'Бражник','Если волк молчит, его лучше не перебивать', 'Всем привет! Я главный андроид разработчик', 'picture.png', 'Россия', 'Нижний Новгород', 0);
+values ('login1', 'Дмитрий', 'Бражник','Если волк молчит, его лучше не перебивать', 'Всем привет! Я главный андроид разработчик', 'http://localhost:8080/api/img/default-profile-picture.jpg', 'Россия', 'Нижний Новгород', 0);
 
 INSERT INTO users (login, first_name, last_name, profile_descr, profile_picture, country, city, money)
-values ('login2', 'Новожилов', 'Александр', 'Сас', 'picture2.png', 'Россия', 'Нижний Новгород', 0);
+values ('login2', 'Новожилов', 'Александр', 'Сас', 'http://localhost:8080/api/img/default-profile-picture.jpg', 'Россия', 'Нижний Новгород', 0);
 
 INSERT INTO users (login, first_name, last_name, profile_descr, profile_picture, country, city, money)
-values ('login3', 'Путин', 'Владимир', 'Описание', 'picture3.png', 'Россия', 'Москва', 50000);
+values ('login3', 'Путин', 'Владимир', 'Описание', 'http://localhost:8080/api/img/default-profile-picture.jpg', 'Россия', 'Москва', 50000);
 
 INSERT INTO users (login, first_name, last_name, profile_descr, profile_picture, country, city, money)
-values ('login4', 'Петр', 'Петров', 'Не молодец', 'picture4.png', 'Россия', 'Тверь', 0);
+values ('login4', 'Петр', 'Петров', 'Не молодец', 'http://localhost:8080/api/img/default-profile-picture.jpg', 'Россия', 'Тверь', 0);
 
 INSERT INTO users (login, first_name, last_name, profile_descr, profile_picture, country, city, money)
-values ('login5', 'Дональд', 'Трамп', 'make america great agan', 'picture5.png', 'USA', 'Washington', 100);
+values ('login5', 'Дональд', 'Трамп', 'make america great again', 'http://localhost:8080/api/img/default-profile-picture.jpg', 'USA', 'Washington', 100);
 
 INSERT INTO users (login, first_name, last_name, profile_descr, profile_picture, country, city, money)
-values ('login5', 'Джон', 'Рембо', 'Первая кровь на них', 'picture6.png', 'USA', 'Washington', 100);
+values ('login5', 'Джон', 'Рембо', 'Первая кровь на них', 'http://localhost:8080/api/img/default-profile-picture.jpg', 'USA', 'Washington', 100);
