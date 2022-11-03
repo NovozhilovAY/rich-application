@@ -4,7 +4,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @DynamicUpdate
@@ -47,7 +47,17 @@ public class User {
     @Column(name = "money")
     private Double money;
 
-    public User(Integer id, String login, String firstName, String lastName, String profileDescription, String status, String profilePicture, String country, String city, Double money) {
+    @Column(name = "password")
+    private String password;
+
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private List<Role> roles;
+
+    public User(Integer id, String login, String firstName, String lastName, String profileDescription, String status, String profilePicture, String country, String city, Double money, String password, List<Role> roles) {
         this.id = id;
         this.login = login;
         this.firstName = firstName;
@@ -58,6 +68,24 @@ public class User {
         this.country = country;
         this.city = city;
         this.money = money;
+        this.password = password;
+        this.roles = roles;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public User() {
