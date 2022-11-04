@@ -1,8 +1,8 @@
 package com.example.richapplication.controller;
 
+import com.example.richapplication.api.UserService;
 import com.example.richapplication.model.ShortUser;
-import com.example.richapplication.model.User;
-import com.example.richapplication.service.UserService;
+import com.example.richapplication.service.UserServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

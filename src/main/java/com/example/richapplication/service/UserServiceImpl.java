@@ -1,5 +1,6 @@
 package com.example.richapplication.service;
 
+import com.example.richapplication.api.UserService;
 import com.example.richapplication.dto.Payment;
 import com.example.richapplication.exceptions.ResourceNotFoundException;
 import com.example.richapplication.model.User;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserService {
+public class UserServiceImpl implements UserService {
     private final UserRepository repository;
 
     @Value("${root.image.url}")
@@ -20,7 +21,7 @@ public class UserService {
     @Value("${default.picture.name}")
     private String defaultProfilePictureName;
 
-    public UserService(UserRepository repository) {
+    public UserServiceImpl(UserRepository repository) {
         this.repository = repository;
     }
 
