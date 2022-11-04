@@ -6,7 +6,7 @@ create table users
     login           varchar,
     first_name      varchar not null,
     last_name       varchar not null,
-    profile_descr   varchar not null,
+    profile_descr   varchar,
     status   varchar,
     profile_picture varchar default 'default_picture.png'::character varying,
     country         varchar,
