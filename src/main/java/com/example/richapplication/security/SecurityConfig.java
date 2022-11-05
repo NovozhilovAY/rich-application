@@ -38,6 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/api/auth/**").permitAll()
+                .antMatchers("/api/img/{filename}").permitAll()
                 .antMatchers("/api/registration").permitAll()
                 .antMatchers("/api/**/**").hasAnyRole("ADMIN", "USER")
                 .anyRequest().authenticated();

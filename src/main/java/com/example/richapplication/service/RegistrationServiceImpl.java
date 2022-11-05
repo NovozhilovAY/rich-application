@@ -37,7 +37,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 
     private void isUserAlreadyExist(String login) {
         if(userRepository.findUserByLogin(login).isPresent()) {
-            throw new UserAlreadyExistsException("User with login - "+login+" already exists!");
+            throw new UserAlreadyExistsException("User with login - '"+login+"' already exists!");
         }
     }
 }
