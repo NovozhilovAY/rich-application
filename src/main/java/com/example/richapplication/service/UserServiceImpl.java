@@ -13,6 +13,7 @@ import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
+
     private final UserRepository repository;
 
     @Value("${root.image.url}")
@@ -51,6 +52,12 @@ public class UserServiceImpl implements UserService {
     public void deleteUserByID(Integer id){
         User userToDelete = this.getUserByID(id);
         repository.delete(userToDelete);
+    }
+
+    @Override
+    public User getUserByUsername(String userName) {
+        return repository.findUserByLogin(userName).orElseThrow(
+                ()->new ResourceNotFoundException("User with login = "+ userName +" not found"));
     }
 
     public User addUser(User user){

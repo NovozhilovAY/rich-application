@@ -16,6 +16,8 @@ public interface UserService {
 
     User getUserByID(Integer id);
 
+    User getUserByUsername(String userName);
+
     UserWithRating getUserWithRatingByID(Integer id);
 
     void deleteUserByID(Integer id);

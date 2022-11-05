@@ -34,6 +34,11 @@ public class UserController {
         return userService.getUsersByCountry(country);
     }
 
+    @GetMapping("/user-name/{username}")
+    User getUserByUsername(@PathVariable String username) {
+        return userService.getUserByUsername(username);
+    }
+
     @GetMapping("/{id}")
     UserWithRating getUserById(@PathVariable(name = "id") Integer id){
         return userService.getUserWithRatingByID(id);
