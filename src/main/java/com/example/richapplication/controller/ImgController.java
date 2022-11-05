@@ -21,7 +21,7 @@ public class ImgController {
         this.imageService = imageService;
     }
 
-    @PostMapping("/{id}")
+    @PostMapping("/update/{id}")
     public ResponseEntity<UpdateImageAnswer> upload(@PathVariable Integer id, @RequestParam("file") MultipartFile file) {
         return imageService.updateProfilePicture(id, file);
     }
