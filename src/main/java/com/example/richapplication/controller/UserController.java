@@ -1,6 +1,7 @@
 package com.example.richapplication.controller;
 
 import com.example.richapplication.dto.Payment;
+import com.example.richapplication.dto.UpdateUserDto;
 import com.example.richapplication.model.User;
 import com.example.richapplication.model.UserWithRating;
 import com.example.richapplication.service.UserServiceImpl;
@@ -56,8 +57,8 @@ public class UserController {
     }
 
     @PutMapping
-    User updateUser(@RequestBody User user){
-        return userService.updateUser(user);
+    User updateUser(@RequestBody UpdateUserDto updateUserDto){
+        return userService.updateUser(updateUserDto);
     }
 
     @PostMapping("/payment")

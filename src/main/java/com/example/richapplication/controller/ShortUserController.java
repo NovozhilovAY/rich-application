@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/short-users")
+@CrossOrigin("*")
 public class ShortUserController {
     private final UserService userService;
 

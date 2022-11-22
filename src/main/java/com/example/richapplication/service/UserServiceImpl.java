@@ -2,6 +2,7 @@ package com.example.richapplication.service;
 
 import com.example.richapplication.api.UserService;
 import com.example.richapplication.dto.Payment;
+import com.example.richapplication.dto.UpdateUserDto;
 import com.example.richapplication.exceptions.ResourceNotFoundException;
 import com.example.richapplication.model.User;
 import com.example.richapplication.model.UserWithRating;
@@ -68,6 +69,13 @@ public class UserServiceImpl implements UserService {
     public User updateUser(User user){
         User userToUpdate = this.getUserByID(user.getId());
         return repository.save(user);
+    }
+
+    @Override
+    public User updateUser(UpdateUserDto updateUserDto) {
+        User userToUpdate = this.getUserByID(updateUserDto.getId());
+        updateUserDto.mapFieldsToUser(userToUpdate);
+        return repository.save(userToUpdate);
     }
 
     public User makePayment(Payment payment){
