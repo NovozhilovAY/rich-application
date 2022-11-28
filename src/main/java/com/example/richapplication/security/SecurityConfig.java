@@ -3,6 +3,7 @@ package com.example.richapplication.security;
 import com.example.richapplication.api.JwtUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -40,6 +41,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/auth/**").permitAll()
                 .antMatchers("/api/img/{fileName}").permitAll()
                 .antMatchers("/api/registration").permitAll()
+                .antMatchers("/api/users/").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/users/**").permitAll()
                 .antMatchers("/api/**/**").hasAnyRole("ADMIN", "USER")
                 .anyRequest().authenticated();
         http.addFilterBefore(authenticationJWTTokenFilter(), UsernamePasswordAuthenticationFilter.class);
