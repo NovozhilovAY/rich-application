@@ -1,6 +1,8 @@
 package com.example.richapplication.service;
 
+import com.example.richapplication.api.UserService;
 import com.example.richapplication.dto.Payment;
+import com.example.richapplication.dto.UpdateUserDto;
 import com.example.richapplication.exceptions.ResourceNotFoundException;
 import com.example.richapplication.model.User;
 import com.example.richapplication.model.UserWithRating;
@@ -11,7 +13,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserService {
+public class UserServiceImpl implements UserService {
+
     private final UserRepository repository;
 
     @Value("${root.image.url}")
@@ -20,7 +23,7 @@ public class UserService {
     @Value("${default.picture.name}")
     private String defaultProfilePictureName;
 
-    public UserService(UserRepository repository) {
+    public UserServiceImpl(UserRepository repository) {
         this.repository = repository;
     }
 
@@ -52,6 +55,12 @@ public class UserService {
         repository.delete(userToDelete);
     }
 
+    @Override
+    public User getUserByUsername(String userName) {
+        return repository.findUserByLogin(userName).orElseThrow(
+                ()->new ResourceNotFoundException("User with login = "+ userName +" not found"));
+    }
+
     public User addUser(User user){
         setDefaultProfilePicture(user);
         return repository.save(user);
@@ -60,6 +69,13 @@ public class UserService {
     public User updateUser(User user){
         User userToUpdate = this.getUserByID(user.getId());
         return repository.save(user);
+    }
+
+    @Override
+    public User updateUser(UpdateUserDto updateUserDto) {
+        User userToUpdate = this.getUserByID(updateUserDto.getId());
+        updateUserDto.mapFieldsToUser(userToUpdate);
+        return repository.save(userToUpdate);
     }
 
     public User makePayment(Payment payment){

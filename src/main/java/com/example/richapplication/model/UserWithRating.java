@@ -1,5 +1,7 @@
 package com.example.richapplication.model;
 
+import java.util.List;
+
 public class UserWithRating extends User{
     private Integer globalRating;
     private Integer countryRating;
@@ -20,8 +22,8 @@ public class UserWithRating extends User{
     public UserWithRating() {
     }
 
-    public UserWithRating(Integer id, String login, String firstName, String lastName, String profileDescription, String profilePicture, String country, String city, Double money, Integer globalRating, Integer countryRating, Integer cityRating, String status) {
-        super(id, login, firstName, lastName, profileDescription,status, profilePicture, country, city, money);
+    public UserWithRating(Integer id, String login, String firstName, String lastName, String profileDescription, String profilePicture, String country, String city, Double money, Integer globalRating, Integer countryRating, Integer cityRating, String status, String password, List<Role> roles) {
+        super(id, login, firstName, lastName, profileDescription,status, profilePicture, country, city, money, password, roles);
         this.globalRating = globalRating;
         this.countryRating = countryRating;
         this.cityRating = cityRating;

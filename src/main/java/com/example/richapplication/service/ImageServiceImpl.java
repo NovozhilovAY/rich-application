@@ -1,5 +1,6 @@
 package com.example.richapplication.service;
 
+import com.example.richapplication.api.ImageService;
 import com.example.richapplication.dto.UpdateImageAnswer;
 import com.example.richapplication.exceptions.ResourceNotFoundException;
 import com.example.richapplication.model.User;
@@ -20,8 +21,8 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 @Service
-public class ImageService {
-    private final UserService userService;
+public class ImageServiceImpl implements ImageService {
+    private final UserServiceImpl userService;
     @Value("${root.image.url}")
     private String rootUrl;
 
@@ -29,7 +30,7 @@ public class ImageService {
     private String defaultProfilePictureName;
     private final String FILE_BASE_PATH = "src/main/resources/static/";
 
-    public ImageService(UserService userService) {
+    public ImageServiceImpl(UserServiceImpl userService) {
         this.userService = userService;
     }
 

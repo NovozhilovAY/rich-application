@@ -1,9 +1,10 @@
 package com.example.richapplication.controller;
 
 import com.example.richapplication.dto.Payment;
+import com.example.richapplication.dto.UpdateUserDto;
 import com.example.richapplication.model.User;
 import com.example.richapplication.model.UserWithRating;
-import com.example.richapplication.service.UserService;
+import com.example.richapplication.service.UserServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,9 +14,9 @@ import java.util.List;
 @RequestMapping("/api/users")
 @CrossOrigin("*")
 public class UserController {
-    private final UserService userService;
+    private final UserServiceImpl userService;
 
-    public UserController(UserService userService) {
+    public UserController(UserServiceImpl userService) {
         this.userService = userService;
     }
 
@@ -32,6 +33,11 @@ public class UserController {
     @GetMapping("/country/{country}")
     List<User> getUsersByCountry(@PathVariable(name = "country")String country){
         return userService.getUsersByCountry(country);
+    }
+
+    @GetMapping("/user-name/{username}")
+    User getUserByUsername(@PathVariable String username) {
+        return userService.getUserByUsername(username);
     }
 
     @GetMapping("/{id}")
@@ -51,8 +57,8 @@ public class UserController {
     }
 
     @PutMapping
-    User updateUser(@RequestBody User user){
-        return userService.updateUser(user);
+    User updateUser(@RequestBody UpdateUserDto updateUserDto){
+        return userService.updateUser(updateUserDto);
     }
 
     @PostMapping("/payment")
